@@ -3,6 +3,7 @@
 Folder: https://github.com/Anishka2504/taxi_spring
 
 # Taxi depot application
+![img_1.png](img_1.png)
 
 An educational project created with Spring Boot. 
 The application use MySQL: 5.7.35.
