@@ -1,15 +1,21 @@
 package edu.itstep.taxi.entity;
 
-import edu.itstep.taxi.entity.parent.BaseEntity;
 import edu.itstep.taxi.entity.parent.LogEntity;
 import lombok.Data;
+import org.springframework.data.jpa.repository.EntityGraph;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 import java.util.Set;
-import java.util.TreeSet;
 
+@NamedEntityGraphs({
+        @NamedEntityGraph(
+                name = "car",
+                attributeNodes = {
+                        @NamedAttributeNode(value = "drivers")
+                }
+        )
+})
 @Data
 @Entity
 @Table

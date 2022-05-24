@@ -14,13 +14,7 @@ public interface CarConverter {
 
     Car convertCarDriverDtoToCar(CarDriverDto carDriverDto);
 
-//    @Mapping(source = "dateCreation", target = "log.dateCreation")
-//    @Mapping(source = "lastModified", target = "log.lastModified")
-//    @Mapping(source = "version", target = "log.version")
     CarDto convertCarToCarDto(Car car);
 
-//    @Mapping(source = "dateCreation", target = "log.dateCreation")
-//    @Mapping(source = "lastModified", target = "log.lastModified")
-//    @Mapping(source = "version", target = "log.version")
     CarDriverDto convertCarToCarDriverDto(Car car);
 }
