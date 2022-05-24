@@ -33,7 +33,7 @@ The "Taxi Depot" application allows to:
 Before launch, make sure that your device support MySQL. Install software for database developing and administrating if
 necessary (PHP Adminer, Postgres, Workbench etc).
 
-1. Run dump.sql file (taxi_spring\api\src\main\resources\sql\dump.sql) to create the database and to fill it with data.
+1. Run _dump.sql_ file (taxi_spring\api\src\main\resources\sql\dump.sql) to create the database and to fill it with data.
 
 2. Run TaxiDepotApplication file (taxi_spring\api\src\main\java\edu\itstep\taxi\TaxiDepotApplication).
 
