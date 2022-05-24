@@ -46,7 +46,12 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public CarDto addNewCar(CarDto carDto) {
-        validator.validateStringParameter(carDto.getBrand(), carDto.getModel(), carDto.getEquipment());
+        validator.validateStringParameter
+                (carDto.getBrand(),
+                        carDto.getModel(),
+                        carDto.getEquipment(),
+                        carDto.getDateCreation(),
+                        carDto.getLastModified());
         validator.validateNumberParameter((int) carDto.getYear(), carDto.getCost(), (int) carDto.getFuelConsumption());
         carDto.setDateCreation(DateTimeMapper.date(new Date()));
         carDto.setLastModified(DateTimeMapper.date(new Date()));

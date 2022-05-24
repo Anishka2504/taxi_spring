@@ -125,10 +125,13 @@ public class DriverServiceImpl implements DriverService {
 
     @Override
     public DriverDto addNewDriver(DriverDto driverDto) {
-        validator.validateStringParameter(driverDto.getLastName(),
-                driverDto.getName(),
-                driverDto.getMiddleName(),
-                driverDto.getDriverLicence());
+        validator.validateStringParameter
+                (driverDto.getLastName(),
+                        driverDto.getName(),
+                        driverDto.getMiddleName(),
+                        driverDto.getDriverLicence(),
+                        driverDto.getDateCreation(),
+                        driverDto.getLastModified());
         driverDto.setDateCreation(DateTimeMapper.date(new Date()));
         driverDto.setLastModified(DateTimeMapper.date(new Date()));
         return driverConverter.convertDriverToDriverDto
