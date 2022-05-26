@@ -61,7 +61,7 @@ public class CarServiceImpl implements CarService {
     @Override
     public List<CarDriverDto> getAllCars(Integer pageNumber, Integer pageSize) {
         List<CarDriverDto> result = new ArrayList<>(0);
-        Page<Car> carPage = carRepository.findAll(PageRequest.of(pageNumber, pageSize));
+        Page<Car> carPage = carRepository.findAll(PageRequest.of(pageNumber, pageSize, Sort.by("id")));
         for (Car car : carPage.getContent()) {
             result.add(carConverter.convertCarToCarDriverDto(car));
         }
