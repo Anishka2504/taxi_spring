@@ -12,17 +12,18 @@ import edu.itstep.taxi.service.dto.CarDriverDto;
 import edu.itstep.taxi.service.dto.CarDto;
 import edu.itstep.taxi.service.dto.DriverDto;
 import edu.itstep.taxi.service.dto.creation.CarCreationDto;
-import edu.itstep.taxi.service.exception.IncorrectValueException;
 import edu.itstep.taxi.service.validator.DataValidator;
+import edu.itstep.taxi.service.validator.impl.DataValidatorImpl;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 @Service
 @Transactional
@@ -35,7 +36,8 @@ public class CarServiceImpl implements CarService {
     private final DataValidator validator;
 
     public CarServiceImpl(CarRepository carRepository, CarConverter carConverter,
-                          DriverRepository driverRepository, DriverConverter driverConverter, DataValidator validator) {
+                          DriverRepository driverRepository, DriverConverter driverConverter,
+                          DataValidatorImpl validator) {
         this.carRepository = carRepository;
         this.carConverter = carConverter;
         this.driverRepository = driverRepository;
@@ -47,14 +49,15 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public CarCreationDto addNewCar(CarCreationDto carCreationDto) {
-        validator.validateStringParameter
-                (carCreationDto.getBrand(),
-                        carCreationDto.getModel(),
-                        carCreationDto.getEquipment()
-                        );
-        validator.validateNumberParameter((int) carCreationDto.getYear(), carCreationDto.getCost(), (int) carCreationDto.getFuelConsumption());
-//        carCreationDto.setDateCreation(DateTimeMapper.date(new Date()));
-//        carCreationDto.setLastModified(DateTimeMapper.date(new Date()));
+        validator.validateStringParameter(
+                carCreationDto.getBrand(),
+                carCreationDto.getModel(),
+                carCreationDto.getEquipment()
+        );
+        validator.validateNumberParameter(
+                (int) carCreationDto.getYear(),
+                carCreationDto.getCost(),
+                (int) carCreationDto.getFuelConsumption());
         return carConverter.convertCarToCarCreationDto(carRepository.save(carConverter.convertCarCreationDtoToCar(carCreationDto)));
     }
 
@@ -68,7 +71,6 @@ public class CarServiceImpl implements CarService {
         validator.validateResult(result);
         return result;
     }
-
 
     @Override
     public CarDriverDto findCarById(long id) {

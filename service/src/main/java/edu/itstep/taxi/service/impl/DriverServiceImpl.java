@@ -7,11 +7,11 @@ import edu.itstep.taxi.repository.DriverRepository;
 import edu.itstep.taxi.service.DriverService;
 import edu.itstep.taxi.service.converter.DriverConverter;
 import edu.itstep.taxi.service.converter.uses.DateTimeMapper;
-import edu.itstep.taxi.service.dto.CarDriverDto;
 import edu.itstep.taxi.service.dto.DriverDto;
 import edu.itstep.taxi.service.dto.creation.DriverCreationDto;
 import edu.itstep.taxi.service.exception.DataNotFoundException;
 import edu.itstep.taxi.service.validator.DataValidator;
+import edu.itstep.taxi.service.validator.impl.DataValidatorImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -33,7 +33,8 @@ public class DriverServiceImpl implements DriverService {
     private final DataValidator validator;
 
 
-    public DriverServiceImpl(CarRepository carRepository, DriverRepository driverRepository, DriverConverter driverConverter, DataValidator validator) {
+    public DriverServiceImpl(CarRepository carRepository, DriverRepository driverRepository,
+                             DriverConverter driverConverter, DataValidatorImpl validator) {
         this.carRepository = carRepository;
         this.driverRepository = driverRepository;
         this.driverConverter = driverConverter;
@@ -41,6 +42,7 @@ public class DriverServiceImpl implements DriverService {
     }
 
     //-----operations-------------------------------------------------------------------------------------------------------
+
     @Override
     public DriverCreationDto addNewDriver(DriverCreationDto driverCreationDto) {
         validator.validateStringParameter
@@ -73,7 +75,7 @@ public class DriverServiceImpl implements DriverService {
     @Override
     public List<DriverDto> findAllByLastName(String lastName, Integer pageNumber, Integer pageSize) {
         List<DriverDto> result = new ArrayList<>(0);
-        for (Driver driver : driverRepository.findAllByLastName
+        for (Driver driver : driverRepository.findAllByLastNameContains
                 (lastName, PageRequest.of(pageNumber, pageSize, Sort.by("dateOfBirth").descending())).getContent()) {
             result.add(driverConverter.convertDriverToDriverDto(driver));
         }
@@ -135,7 +137,6 @@ public class DriverServiceImpl implements DriverService {
         return driverConverter.convertDriverToDriverDto
                 (driverRepository.save(driverConverter.convertDriverDtoToDriver(driverDto)));
     }
-
 
     @Override
     public void deleteById(long id) {

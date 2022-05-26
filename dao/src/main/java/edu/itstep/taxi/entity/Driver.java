@@ -1,14 +1,13 @@
 package edu.itstep.taxi.entity;
 
-import edu.itstep.taxi.entity.parent.BaseEntity;
 import edu.itstep.taxi.entity.parent.LogEntity;
 import lombok.Data;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
 
 @Data
 @Entity

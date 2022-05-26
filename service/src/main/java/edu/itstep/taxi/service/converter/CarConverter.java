@@ -6,7 +6,6 @@ import edu.itstep.taxi.service.dto.CarDriverDto;
 import edu.itstep.taxi.service.dto.CarDto;
 import edu.itstep.taxi.service.dto.creation.CarCreationDto;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring", uses = {DateTimeMapper.class})
 public interface CarConverter {

@@ -2,7 +2,6 @@ package edu.itstep.taxi.entity;
 
 import edu.itstep.taxi.entity.parent.LogEntity;
 import lombok.Data;
-import org.springframework.data.jpa.repository.EntityGraph;
 
 import javax.persistence.*;
 import java.io.Serializable;

@@ -6,7 +6,6 @@ import edu.itstep.taxi.service.dto.CarDto;
 import edu.itstep.taxi.service.dto.creation.CarCreationDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,6 +24,7 @@ public class CarController {
     }
 
     //-----operations-------------------------------------------------------------------------
+
     @PostMapping("/cars/car")
     @Operation(summary = "Add new car",
             description = "Enter brand, model, year of issue, number, type of equipment, value of fuel consumption" +
@@ -64,8 +64,8 @@ public class CarController {
                     "Enter the number of page to see its content. " +
                     "Cars founded by request will be sorted by equipment and by year of issue (from old to new)")
     public List<CarDto> findCarByDriver(@RequestParam Long driverId, @RequestParam Integer pageNumber) {
-        return carService.findCarByDriver(driverId, pageNumber - 1, PAGE_SIZE);};
-
+        return carService.findCarByDriver(driverId, pageNumber - 1, PAGE_SIZE);
+    }
 
     @PutMapping("/cars/attach_driver")
     @Operation(summary = "Attach driver to the car",

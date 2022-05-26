@@ -5,7 +5,6 @@ import edu.itstep.taxi.service.converter.uses.DateTimeMapper;
 import edu.itstep.taxi.service.dto.DriverDto;
 import edu.itstep.taxi.service.dto.creation.DriverCreationDto;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring", uses = {DateTimeMapper.class})
 public interface DriverConverter {

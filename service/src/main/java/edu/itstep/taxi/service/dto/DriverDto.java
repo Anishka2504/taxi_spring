@@ -1,6 +1,5 @@
 package edu.itstep.taxi.service.dto;
 
-import edu.itstep.taxi.service.dto.parent.BaseDto;
 import edu.itstep.taxi.service.dto.parent.LogDto;
 import lombok.Data;
 

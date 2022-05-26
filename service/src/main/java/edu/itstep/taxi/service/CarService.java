@@ -3,8 +3,6 @@ package edu.itstep.taxi.service;
 import edu.itstep.taxi.service.dto.CarDriverDto;
 import edu.itstep.taxi.service.dto.CarDto;
 import edu.itstep.taxi.service.dto.creation.CarCreationDto;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 
 import java.util.List;
 

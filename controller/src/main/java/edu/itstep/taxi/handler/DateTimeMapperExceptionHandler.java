@@ -2,7 +2,6 @@ package edu.itstep.taxi.handler;
 
 import edu.itstep.taxi.handler.details.ErrorDetails;
 import edu.itstep.taxi.service.exception.DateTimeMapperException;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
