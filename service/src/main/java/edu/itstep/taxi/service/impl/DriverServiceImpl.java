@@ -9,6 +9,7 @@ import edu.itstep.taxi.service.converter.DriverConverter;
 import edu.itstep.taxi.service.converter.uses.DateTimeMapper;
 import edu.itstep.taxi.service.dto.CarDriverDto;
 import edu.itstep.taxi.service.dto.DriverDto;
+import edu.itstep.taxi.service.dto.creation.DriverCreationDto;
 import edu.itstep.taxi.service.exception.DataNotFoundException;
 import edu.itstep.taxi.service.validator.DataValidator;
 import org.springframework.data.domain.PageRequest;
@@ -40,6 +41,19 @@ public class DriverServiceImpl implements DriverService {
     }
 
     //-----operations-------------------------------------------------------------------------------------------------------
+    @Override
+    public DriverCreationDto addNewDriver(DriverCreationDto driverCreationDto) {
+        validator.validateStringParameter
+                (driverCreationDto.getLastName(),
+                        driverCreationDto.getName(),
+                        driverCreationDto.getMiddleName(),
+                        driverCreationDto.getDriverLicence()
+                );
+        return driverConverter.convertDriverToDriverCreationDto
+                (driverRepository.save(driverConverter.convertDriverCreationDtoToDriver(driverCreationDto)));
+    }
+
+
     @Override
     public List<DriverDto> getAll(Integer pageNumber, Integer pageSize) {
         List<DriverDto> result = new ArrayList<>(0);
@@ -122,21 +136,6 @@ public class DriverServiceImpl implements DriverService {
                 (driverRepository.save(driverConverter.convertDriverDtoToDriver(driverDto)));
     }
 
-
-    @Override
-    public DriverDto addNewDriver(DriverDto driverDto) {
-        validator.validateStringParameter
-                (driverDto.getLastName(),
-                        driverDto.getName(),
-                        driverDto.getMiddleName(),
-                        driverDto.getDriverLicence(),
-                        driverDto.getDateCreation(),
-                        driverDto.getLastModified());
-        driverDto.setDateCreation(DateTimeMapper.date(new Date()));
-        driverDto.setLastModified(DateTimeMapper.date(new Date()));
-        return driverConverter.convertDriverToDriverDto
-                (driverRepository.save(driverConverter.convertDriverDtoToDriver(driverDto)));
-    }
 
     @Override
     public void deleteById(long id) {

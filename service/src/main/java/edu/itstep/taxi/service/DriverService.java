@@ -1,13 +1,14 @@
 package edu.itstep.taxi.service;
 
 import edu.itstep.taxi.service.dto.DriverDto;
+import edu.itstep.taxi.service.dto.creation.DriverCreationDto;
 import org.springframework.data.domain.Sort;
 
 import java.util.List;
 
 public interface DriverService {
 
-    DriverDto addNewDriver(DriverDto driverDto);
+    DriverCreationDto addNewDriver(DriverCreationDto driverDto);
 
     List<DriverDto> getAll(Integer pageNumber, Integer pageSize);
 

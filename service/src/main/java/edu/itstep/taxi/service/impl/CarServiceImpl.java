@@ -11,6 +11,7 @@ import edu.itstep.taxi.service.converter.uses.DateTimeMapper;
 import edu.itstep.taxi.service.dto.CarDriverDto;
 import edu.itstep.taxi.service.dto.CarDto;
 import edu.itstep.taxi.service.dto.DriverDto;
+import edu.itstep.taxi.service.dto.creation.CarCreationDto;
 import edu.itstep.taxi.service.exception.IncorrectValueException;
 import edu.itstep.taxi.service.validator.DataValidator;
 import org.springframework.data.domain.Page;
@@ -45,17 +46,16 @@ public class CarServiceImpl implements CarService {
     //-----operations---------------------------------------------------------------------------------------------------
 
     @Override
-    public CarDto addNewCar(CarDto carDto) {
+    public CarCreationDto addNewCar(CarCreationDto carCreationDto) {
         validator.validateStringParameter
-                (carDto.getBrand(),
-                        carDto.getModel(),
-                        carDto.getEquipment(),
-                        carDto.getDateCreation(),
-                        carDto.getLastModified());
-        validator.validateNumberParameter((int) carDto.getYear(), carDto.getCost(), (int) carDto.getFuelConsumption());
-        carDto.setDateCreation(DateTimeMapper.date(new Date()));
-        carDto.setLastModified(DateTimeMapper.date(new Date()));
-        return carConverter.convertCarToCarDto(carRepository.save(carConverter.convertCarDtoToCar(carDto)));
+                (carCreationDto.getBrand(),
+                        carCreationDto.getModel(),
+                        carCreationDto.getEquipment()
+                        );
+        validator.validateNumberParameter((int) carCreationDto.getYear(), carCreationDto.getCost(), (int) carCreationDto.getFuelConsumption());
+//        carCreationDto.setDateCreation(DateTimeMapper.date(new Date()));
+//        carCreationDto.setLastModified(DateTimeMapper.date(new Date()));
+        return carConverter.convertCarToCarCreationDto(carRepository.save(carConverter.convertCarCreationDtoToCar(carCreationDto)));
     }
 
     @Override

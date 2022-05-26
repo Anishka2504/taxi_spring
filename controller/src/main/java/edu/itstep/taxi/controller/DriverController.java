@@ -2,6 +2,7 @@ package edu.itstep.taxi.controller;
 
 import edu.itstep.taxi.service.DriverService;
 import edu.itstep.taxi.service.dto.DriverDto;
+import edu.itstep.taxi.service.dto.creation.DriverCreationDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
@@ -25,9 +26,11 @@ public class DriverController {
     //-----operations--------------------------------------------------------------------------------------------------
 
     @PostMapping("/drivers/driver")
-    @Operation(summary = "Add new driver", description = "Add new driver to the depot")
-    public DriverDto addNewDriver(@RequestBody DriverDto driverDto) {
-        return driverService.addNewDriver(driverDto);
+    @Operation(summary = "Add new driver",
+            description = "Enter last name, name, middle name, date of birth (dd.mm.yyyy) and the number of" +
+                    " driver licence of a driver to add one to the depot.")
+    public DriverCreationDto addNewDriver(@RequestBody DriverCreationDto driverCreationDto) {
+        return driverService.addNewDriver(driverCreationDto);
     }
 
     @GetMapping("/drivers")
@@ -47,7 +50,7 @@ public class DriverController {
     @Operation(summary = "Search by lastname (paged and sorted)",
             description = "Enter lastname to find all drivers with this one. " +
                     "Drivers in result list are sorted by date of birth from young to old. " +
-            "Enter the number of page to see its content")
+                    "Enter the number of page to see its content")
     public List<DriverDto> findAllByLastName(@RequestParam String lastName, @RequestParam Integer pageNumber) {
         return driverService.findAllByLastName(lastName, pageNumber - 1, PAGE_SIZE);
     }
@@ -70,22 +73,22 @@ public class DriverController {
 
     @PutMapping("/drivers/change_last_name")
     @Operation(summary = "Changing of driver's last name",
-    description = "Enter ID of the driver whose last name should be changed and then enter new last name")
-    public DriverDto changeLastName(@RequestParam Long id, @RequestParam String lastName){
+            description = "Enter ID of the driver whose last name should be changed and then enter new last name")
+    public DriverDto changeLastName(@RequestParam Long id, @RequestParam String lastName) {
         return driverService.changeLastName(id, lastName);
     }
 
     @PutMapping("/drivers/change_name")
     @Operation(summary = "Changing of driver's name",
             description = "Enter ID of the driver whose name should be changed and then enter new name")
-    public DriverDto changeName(@RequestParam Long id, @RequestParam String name){
+    public DriverDto changeName(@RequestParam Long id, @RequestParam String name) {
         return driverService.changeName(id, name);
     }
 
     @PutMapping("/drivers/change_driver_licence")
     @Operation(summary = "Changing of driver's licence number",
             description = "Enter ID of the driver whose licence data should be changed and then enter new data")
-    public DriverDto changeDriverLicence(@RequestParam Long id, @RequestParam String licence){
+    public DriverDto changeDriverLicence(@RequestParam Long id, @RequestParam String licence) {
         return driverService.changeDriverLicence(id, licence);
     }
 

@@ -3,6 +3,7 @@ package edu.itstep.taxi.controller;
 import edu.itstep.taxi.service.CarService;
 import edu.itstep.taxi.service.dto.CarDriverDto;
 import edu.itstep.taxi.service.dto.CarDto;
+import edu.itstep.taxi.service.dto.creation.CarCreationDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.Sort;
@@ -25,9 +26,11 @@ public class CarController {
 
     //-----operations-------------------------------------------------------------------------
     @PostMapping("/cars/car")
-    @Operation(summary = "Add new car", description = "Add new car to the depot")
-    public CarDto addNewCar(@RequestBody CarDto carDto) {
-        return carService.addNewCar(carDto);
+    @Operation(summary = "Add new car",
+            description = "Enter brand, model, year of issue, number, type of equipment, value of fuel consumption" +
+                    " and cost of a car to add one to the depot.")
+    public CarCreationDto addNewCar(@RequestBody CarCreationDto carCreationDto) {
+        return carService.addNewCar(carCreationDto);
     }
 
     @GetMapping("/cars")
