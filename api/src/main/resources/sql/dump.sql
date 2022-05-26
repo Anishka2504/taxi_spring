@@ -1,13 +1,9 @@
 SET NAMES utf8;
-SET
-    foreign_key_checks = 0;
+SET foreign_key_checks = 0;
 
-DROP
-    DATABASE IF EXISTS `taxi_depot`;
-CREATE
-    DATABASE `taxi_depot` character set utf8 collate utf8_general_ci;
-USE
-    `taxi_depot`;
+DROP DATABASE IF EXISTS `taxi_depot`;
+CREATE DATABASE `taxi_depot` character set utf8 collate utf8_general_ci;
+USE `taxi_depot`;
 
 CREATE TABLE `car`
 (
@@ -89,5 +85,4 @@ VALUES (1, 1),
        (4, 5),
        (10, 3);
 
-SET
-    foreign_key_checks = 1;
+SET foreign_key_checks = 1;
